@@ -56,9 +56,9 @@ class SignUpScreen extends StatelessWidget {
               height: 15.h,
             ),
             UiHelper.CustomTextField(
-                controller: passwordController,
+                controller: usernameController,
                 text: "Username",
-                toHide: true,
+                toHide: false,
                 textinput: TextInputType.text),
             SizedBox(
               height: 5.h,
@@ -72,6 +72,7 @@ class SignUpScreen extends StatelessWidget {
                   UiHelper.CustomSnackBar(
                       text: state.signUpModel.message.toString(),
                       context: context);
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
                 } else if (state is SignUpErrorStates) {
                   UiHelper.CustomSnackBar(
                       text: state.error.toString(), context: context);

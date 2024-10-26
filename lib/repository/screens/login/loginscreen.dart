@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mynewsapp/repository/screens/login/blocs/signinbloc.dart';
+import 'package:mynewsapp/repository/screens/login/blocs/signinstates.dart';
+import 'package:mynewsapp/repository/screens/login/controllers/signincontroller.dart';
 import 'package:mynewsapp/repository/screens/signup/signupscreen.dart';
 import 'package:mynewsapp/repository/widgets/uihelper.dart';
 
@@ -66,7 +70,33 @@ class LoginScreen extends StatelessWidget {
             SizedBox(
               height: 10.h,
             ),
-            UiHelper.CustomButton(callback: () {}, text: "Sign In")
+            BlocConsumer<SignInBloc, SignInStates>(
+              listener: (context, state) {
+                if (state is SignInLoadedState) {
+                  UiHelper.CustomSnackBar(
+                      text: state.signInModel.message.toString(),
+                      context: context);
+                } else if (state is SignInErrorState) {
+                  UiHelper.CustomSnackBar(
+                      text: state.error.toString(), context: context);
+                }
+              },
+              builder: (context, state) {
+                if (state is SignInLoadingState) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                return UiHelper.CustomButton(
+                    callback: () {
+                      SignInController.signIn(
+                          email: emailController.text.toString(),
+                          password: passwordController.text.toString(),
+                          context: context);
+                    },
+                    text: "Sign In");
+              },
+            )
           ],
         ),
       ),

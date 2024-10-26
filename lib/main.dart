@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mynewsapp/data/remote/apihelper.dart';
+import 'package:mynewsapp/repository/screens/login/blocs/signinbloc.dart';
 import 'package:mynewsapp/repository/screens/onboarding/onboardingscreen.dart';
 import 'package:mynewsapp/repository/screens/signup/blocs/signupbloc.dart';
 
@@ -18,7 +19,8 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       child: MultiBlocProvider(
         providers: [
-          BlocProvider(create: (_) => SignUpBloc(apiHelper: ApiHelper()))
+          BlocProvider(create: (_) => SignUpBloc(apiHelper: ApiHelper())),
+          BlocProvider(create: (_) => SignInBloc(apiHelper: ApiHelper()))
         ],
         child: MaterialApp(
             debugShowCheckedModeBanner: false,
