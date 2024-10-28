@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mynewsapp/repository/screens/bottom/bottomnav.dart';
+import 'package:mynewsapp/repository/screens/home/homescreen.dart';
 import 'package:mynewsapp/repository/screens/login/blocs/signinbloc.dart';
 import 'package:mynewsapp/repository/screens/login/blocs/signinstates.dart';
 import 'package:mynewsapp/repository/screens/login/controllers/signincontroller.dart';
@@ -21,7 +23,7 @@ class LoginScreen extends StatelessWidget {
                 text: "Login here",
                 fontsize: 25.sp,
                 fontweight: FontWeight.w700,
-                color: Color(0XFF1F41BB)),
+                color: const Color(0XFF1F41BB)),
             SizedBox(
               height: 5.h,
             ),
@@ -63,7 +65,7 @@ class LoginScreen extends StatelessWidget {
                       callback: () {},
                       text: "Forgot your password?",
                       fontsize: 13.sp,
-                      color: Color(0XFF1F41BB))
+                      color: const Color(0XFF1F41BB))
                 ],
               ),
             ),
@@ -76,6 +78,8 @@ class LoginScreen extends StatelessWidget {
                   UiHelper.CustomSnackBar(
                       text: state.signInModel.message.toString(),
                       context: context);
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => const BottomNavScreen()));
                 } else if (state is SignInErrorState) {
                   UiHelper.CustomSnackBar(
                       text: state.error.toString(), context: context);
@@ -83,7 +87,7 @@ class LoginScreen extends StatelessWidget {
               },
               builder: (context, state) {
                 if (state is SignInLoadingState) {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 }
@@ -107,7 +111,7 @@ class LoginScreen extends StatelessWidget {
         },
         text: "Create new account?",
         fontsize: 14.sp,
-        color: Color(0XFF000000),
+        color: const Color(0XFF000000),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );

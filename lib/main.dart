@@ -3,9 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mynewsapp/data/remote/apihelper.dart';
 import 'package:mynewsapp/repository/screens/login/blocs/signinbloc.dart';
-import 'package:mynewsapp/repository/screens/onboarding/onboardingscreen.dart';
 import 'package:mynewsapp/repository/screens/signup/blocs/signupbloc.dart';
-
 import 'repository/screens/splash/splashscreen.dart';
 
 void main() {

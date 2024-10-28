@@ -102,7 +102,31 @@ class UiHelper {
   static CustomSnackBar({required String text, required BuildContext context}) {
     return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text(text),
-      backgroundColor: Color(0XFF1F41BB),
+      backgroundColor: const Color(0XFF1F41BB),
     ));
+  }
+
+  static CustomSearchTextField(
+      {required TextEditingController controller,
+      required String text,
+      required VoidCallback callback}) {
+    return SizedBox(
+      height: 35.h,
+      width: 280.w,
+      child: TextField(
+        textAlign: TextAlign.justify,
+        controller: controller,
+        decoration: InputDecoration(
+            hintText: text,
+            hintStyle:  TextStyle(color: Color(0XFF818181),fontSize: 12.sp),
+            suffixIcon: IconButton(
+                onPressed: () {
+                  callback();
+                },
+                icon: Image.asset("assets/images/search.png")),
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
+      ),
+    );
   }
 }
